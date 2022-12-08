@@ -16,6 +16,12 @@ export const findNews = async(req, res) => {
 export const createNews = async(req, res) => {
 
     try{
+        //caught information about authorization bearer token
+        const { authorization } = req.headers
+        const parts = authorization.split(' ')
+
+        const [schema, token] = parts
+
         const news = await create(req.body)
     
         if(!news) return res.status(400).send({message: 'invalid content'})
