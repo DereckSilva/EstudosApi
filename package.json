@@ -5,7 +5,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon express.js"
+    "start": "nodemon express.js --ignore-watch"
   },
   "keywords": [],
   "author": "",
