@@ -1,25 +1,25 @@
 
 import express  from 'express'
 import { router } from './src/router/router.js'
-import { routerNews }  from './src/router/newsRouter.js'
-import { routerAuth } from './src/router/authRouter.js'
-import {conexao} from './src/database/database.js'
+import { routerNews }  from './src/router/news.routes.js'
+import { routerAuth } from './src/router/auth.routes.js'
+import { conexao } from './src/database/database.js'
 import dotenv from 'dotenv'
 dotenv.config()
 
 const app = express()
 const port = 3000
 
-//utilização de json
+//accept express used json
 app.use(express.json())
 
-//utilizando as rotas para definir as mensagens
+//routes
 app.use('/user',router)
 app.use('/news',routerNews)
 app.use('/auth', routerAuth)
 
-//conexão banco de dados
+//database connection
 conexao()
 app.listen(port, () => {
-    console.log(`Servidor rodando na porta ${port}`)
+    console.log(`Server opening in the port ${port}`)
 })
