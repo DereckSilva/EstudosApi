@@ -5,6 +5,6 @@ import { authMiddleware } from '../middleware/authMidlleware.js'
 const routerNews = express.Router()
 
 routerNews.post('/', authMiddleware, createNews)
-routerNews.get('/', authMiddleware, findNews)
+routerNews.get('/', findNews)
 
 export {routerNews}
