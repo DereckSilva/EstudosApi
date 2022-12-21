@@ -7,7 +7,9 @@ import bcrypt from 'bcrypt'
 export const verificaID = (req, res, next) => {
     const id = req.body.id != undefined ? req.body.id : req.params.id
 
-    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(400).send({message: "Id inválido"})
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(400).send({message: "Invalid ID"})
+
+    req.id = id
     next()
 }
 

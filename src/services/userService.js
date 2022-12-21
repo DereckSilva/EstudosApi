@@ -33,7 +33,7 @@ export const userUpdate = (id, dados) => {
 }
 
 export const generateToken = (email) => {
-    const token = jwt.sign({email: email}, process.env.SECRET_JWT, {expiresIn: 20})
+    const token = jwt.sign({email: email}, process.env.SECRET_JWT, {expiresIn: 2000})
 
     return token
 }

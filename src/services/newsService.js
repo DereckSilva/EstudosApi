@@ -21,3 +21,16 @@ export const countNews = () => {
 
     return totalNews
 }
+
+export const topPost = () => {
+    //catching last register in the database -> using findOne with mongoDB
+    const top = NewsModel.findOne().sort({_id: -1})
+
+    return top
+}
+
+export const findOnlyNew = (id) => {
+    const onlyNew = NewsModel.findById(id)
+
+    return onlyNew
+}
