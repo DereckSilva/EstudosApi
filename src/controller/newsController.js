@@ -1,4 +1,4 @@
-import { findAllNews, create, countNews, topPost, findOnlyNew } from '../services/newsService.js'
+import { findAllNews, create, countNews, topPost, findOnlyNew, newUser, updateNewUser } from '../services/newsService.js'
 
 export const findNews = async(req, res) => {
 
@@ -83,6 +83,30 @@ export const findNew = async (req, res) => {
 
         return res.status(200).send(onlyNew)
 
+    }catch(err){
+        res.status(500).send({message: err.message})
+    }
+}
+
+export const userNews = (req, res) => {
+    const { newsUser } = req
+
+    console.log(newsUser)
+}
+
+export const updateNew = async (req, res) => {
+    try{
+        const { newsUser } = req
+
+        if(newsUser.length == 0) return res.status(404).send({message: 'Not found news for this user'})
+
+        const { idNew, user } = req.body
+
+        const newUpdated = await updateNewUser(idNew, user)
+
+        if(!newUpdated) return res.status(500).send({message: 'Not is possible update  this new'})
+
+        return res.status(200).send({message: 'Message updated successfully'})
     }catch(err){
         res.status(500).send({message: err.message})
     }

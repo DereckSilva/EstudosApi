@@ -1,13 +1,16 @@
 import mongoose from 'mongoose'
 import {findUser} from '../services/userService.js'
-import { UserModel } from '../model/userModel.js'
 import bcrypt from 'bcrypt'
 
 //verificando se o id é válido para o mongoose
 export const verificaID = (req, res, next) => {
     const id = req.body.id != undefined ? req.body.id : req.params.id
 
+    //verify id user
     if(!mongoose.Types.ObjectId.isValid(id)) return res.status(400).send({message: "Invalid ID"})
+
+    //verify id news
+    if(req.body.idNew && !mongoose.Types.ObjectId.isValid(req.body.idNew)) return res.status(400).send({message: 'Invalid new ID'})
 
     req.id = id
     next()
