@@ -56,8 +56,11 @@ export const updateNewUser = (id, user) => {
     return news
 }
 
-export const removeNew = (id, idNew) => {
-    const news = NewsModel.findOneAndDelete({user: id}, {_id: idNew})
+export const removeNew = (id, content) => {
+    const news = NewsModel.findOneAndDelete({_id: content.idNew}, {
+        user: id,
+        title: content.title
+    })
 
     return news
 }

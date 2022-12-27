@@ -149,12 +149,16 @@ export const updateNew = async (req, res) => {
 
 export const deleteNew = async (req, res) => {
 
-    const { idNew } = req.body
-    const { id } = req
+    try{
+        const { content }  = req.body
+        const { id } = req
 
-    const news = await removeNew(id, idNew)
+        const news = await removeNew(id, content)
 
-    console.log(news)
-    
+        if(!news) return res.status(404).send({message: 'Not found new'})
 
+        return res.status(200).send({message: 'Message deleted successfully'})
+    }catch(err){
+        res.status(500).send({message: err.message})
+    }
 }
