@@ -46,13 +46,18 @@ export const newUser = (id, limit, offset) => {
                               .sort({_id: -1})
                               .skip(offset)
                               .limit(limit)
-
     return newsUser
 }
 
 export const updateNewUser = (id, user) => {
 
     const news =  NewsModel.findByIdAndUpdate(id, user)
+
+    return news
+}
+
+export const removeNew = (id, idNew) => {
+    const news = NewsModel.findOneAndDelete({user: id}, {_id: idNew})
 
     return news
 }

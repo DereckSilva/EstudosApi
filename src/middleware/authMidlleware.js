@@ -30,6 +30,8 @@ export const authMiddleware = (req, res, next) => {
 
             if(!user) return res.status(401).send({message: 'Not found user'})
             
+            req.user = user
+
             next()
         })
         
