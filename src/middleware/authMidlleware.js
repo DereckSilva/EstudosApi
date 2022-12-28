@@ -28,7 +28,7 @@ export const authMiddleware = (req, res, next) => {
             
             const user = await findEmail(email)
 
-            if(!user) return res.status(401).send({message: 'Not found user'})
+            if(user.length == 0) return res.status(401).send({message: 'Not found user'})
             
             req.user = user
 

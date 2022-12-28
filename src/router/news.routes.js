@@ -11,6 +11,6 @@ routerNews.get('/top', topNews)
 routerNews.get('/new/:id',verificaID ,findNew)
 routerNews.get('/news/:id', verificaID ,findNewsUser)
 routerNews.patch('/updateNew', verificaID, updateNew)
-routerNews.delete('/deleteNew/:id', verificaID, deleteNew)
+routerNews.delete('/deleteNew/:id', authMiddleware,verificaID, deleteNew)
 
 export {routerNews}

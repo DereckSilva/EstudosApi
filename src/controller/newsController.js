@@ -151,13 +151,21 @@ export const deleteNew = async (req, res) => {
 
     try{
         const { content }  = req.body
-        const { id } = req
+        const { user } = req
+
+        const onlyNew = await findOnlyNew(content.idNew)
+
+        if(!onlyNew) return res.status(500).send({message: 'Not found news'})
+
+        const userNew  = onlyNew
+
+        if(String(user[0]._id) != String(userNew.user)) return res.status(401).send({message: 'Conflict user'})
 
         const news = await removeNew(id, content)
 
-        if(!news) return res.status(404).send({message: 'Not found new'})
+        if(!news) return res.status(404).send({message: 'Not found news'})
 
-        return res.status(200).send({message: 'Message deleted successfully'})
+        return res.status(200).send({message: 'Message deleted successfully'}) 
     }catch(err){
         res.status(500).send({message: err.message})
     }
